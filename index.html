@@ -49,13 +49,7 @@
       src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces6%2Ces7%2CNumber.isInteger%2CObject.values"
     ></script>
     <meta name="importmap-type" content="systemjs-importmap" />
-    <script type="systemjs-importmap" src="../import-map.json"></script>
-    <% if (isLocal) { %>
-    <script
-      type="systemjs-importmap"
-      src="../import-maps/local.import-map.json"
-    ></script>
-    <% } %>
+    <script type="systemjs-importmap" src="./import-map.json"></script>
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/extras/amd.min.js"></script>
