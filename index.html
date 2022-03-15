@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <noscript id="jss-insertion-point"></noscript>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HomeSafe</title>
+    <link
+      rel="icon"
+      href="./assets/favicon-black.svg"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      #loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        height: 100vh;
+      }
+      #loading img {
+        height: 200px;
+      }
+    </style>
+    <script>
+      if (typeof Promise === "undefined")
+        document.write(
+          '<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.2/bluebird.core.js"><\/script>'
+        );
+    </script>
+    <script>
+      if (typeof fetch === "undefined")
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/fetch-polyfill@0.8.2/fetch.min.js"><\/script>'
+        );
+    </script>
+    <script
+      crossorigin="anonymous"
+      src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces6%2Ces7%2CNumber.isInteger%2CObject.values"
+    ></script>
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script type="systemjs-importmap" src="../import-map.json"></script>
+    <% if (isLocal) { %>
+    <script
+      type="systemjs-importmap"
+      src="../import-maps/local.import-map.json"
+    ></script>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.3.1/extras/named-exports.js"></script>
+    <script>
+      (function () {
+        const originalInstantiate = System.constructor.prototype.instantiate;
+        System.constructor.prototype.instantiate = function () {
+          return originalInstantiate
+            .apply(this, arguments)
+            .then(function (register) {
+              const originalFn = register[1];
+              register[1] = function (_export) {
+                _export("__esModule", true);
+                return originalFn.apply(this, arguments);
+              };
+              return register;
+            });
+        };
+      })();
+    </script>
+    <script>
+      const darkModeMediaQuery = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
+      handleDarkmode(darkModeMediaQuery);
+
+      function handleDarkmode(e) {
+        const darkModeOn = e.matches;
+        const favicon = document.querySelector('link[rel="icon"]');
+        if (!favicon) {
+          return;
+        }
+        if (darkModeOn) {
+          favicon.href = "./assets/favicon-white.svg";
+        } else {
+          favicon.href = "./assets/favicon-black.svg";
+        }
+      }
+
+      darkModeMediaQuery.addListener(handleDarkmode);
+    </script>
+  </head>
+  <body>
+    <div id="loading">
+      <img src="../assets/loading.gif" alt="loading" />
+    </div>
+    <script>
+      System.import("@nutrien/she-sidebar-app");
+    </script>
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>

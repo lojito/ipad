@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "react": "https://cdn.jsdelivr.net/npm/react@17.0.1/umd/react.development.min.js",
+    "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.1/umd/react-dom.development.min.js",
+    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.8.2/lib/system/single-spa.min.js",
+    "@nutrien/root-config": "https://lojito.github.io/ipad/root-config.js",
+    "@nutrien/she-sidebar-app": "https://lojito.github.io/ipad/nutrien-she-sidebar-app.js"
+  }
+}
